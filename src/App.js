@@ -6,12 +6,13 @@ import 'normalize.css'
 import './reset.css'
 //import * as localStore from './localStore'
 import UserDialog from './UserDialog'
+import {getCurrentUser} from './leanCloud'
 
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      user: {},
+      user: getCurrentUser() || {},
       newTodo: '',
       //todoList: localStore.load('todoList') || []
       todoList:[]
