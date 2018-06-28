@@ -8,7 +8,7 @@
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
   },
-  "homepage": "https://sagesanyue.github.io/reactTest1.0/build",
+  "homepage": "https://sagesanyue.github.io/TodoList-React/build",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
