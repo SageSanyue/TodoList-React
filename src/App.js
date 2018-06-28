@@ -7,20 +7,13 @@ import './reset.css'
 import * as localStore from './localStore'
 
 import AV from 'leancloud-storage'
-var APP_ID = Ccm488O3B6M5kTnrGiDGqGsu-gzGzoHsz
-var APP_KEY = NJQPLazC78Y8EkcGQ46wnOvj
+var APP_ID = 'Ccm488O3B6M5kTnrGiDGqGsu-gzGzoHsz'
+var APP_KEY = 'NJQPLazC78Y8EkcGQ46wnOvj'
 AV.init({
   appId: APP_ID,
   appKey: APP_KEY
 })
 
-var TestObject = AV.Object.extend('TestObject');
-var testObject = new TestObject();
-testObject.save({
-  words: 'Hello World!'
-}).then(function(object) {
-  alert('LeanCloud Rocks!');
-})
 
 class App extends Component {
   constructor(props){
