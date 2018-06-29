@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class SignInForm extends Component{
     render(){
         return (
-            <form className="signIn" onSubmit={this.signIn.bind(this)}> {/* 登录*/}
+            <form className="signIn" onSubmit={this.props.onSubmit}> {/* 登录*/}
                 <div className="row">
                         <label>用户名</label>
                         <input type="text" value={this.props.formData.username}
