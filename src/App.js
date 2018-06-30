@@ -6,7 +6,7 @@ import 'normalize.css'
 import './reset.css'
 //import * as localStore from './localStore'
 import UserDialog from './UserDialog'
-import {getCurrentUser, signOut} from './leanCloud'
+import {getCurrentUser, signOut, TodoModel} from './leanCloud'
 
 
 
@@ -90,17 +90,24 @@ class App extends Component {
 
   addTodo(event){
     //console.log('要添加一个todo')
-    this.state.todoList.push({
-      id: idMaker(),
+    //this.state.todoList.push({
+     // id: idMaker(),
+     let newTodo = {
       title: event.target.value,
       status: null,
       deleted: false
-    })
-    this.setState({
-      newTodo: '',
-      todoList: this.state.todoList
-    })
     
+    }
+    TodoModel.create(newTodo, (id) => {
+      newTodo.id = id
+      this.state.todoList.push(newTodo)
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList
+      })
+    },(error)=>{
+      console.log(error)
+    })
   }
   delete(event,todo){
     todo.deleted = true
@@ -111,9 +118,9 @@ class App extends Component {
 
 export default App;
 
-let id = 0
+//let id = 0
 
-function idMaker(){
-  id += 1
-  return id
-}
+//function idMaker(){
+ // id += 1
+ // return id
+//}
