@@ -13,7 +13,7 @@ import AV from './leanCloud'
 //声明类型
 var TodoFolder = AV.Object.extend('TodoFolder');
 //新建对象
-todoFolder = new TodoFolder();
+var todoFolder = new TodoFolder();
 //设置名称
 todoFolder.set('name','工作');
 //设置优先级
