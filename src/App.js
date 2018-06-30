@@ -108,9 +108,8 @@ class App extends Component {
      // id: idMaker(),
      let newTodo = {
       title: event.target.value,
-      status: null,
+      status: '',
       deleted: false
-    
     }
     TodoModel.create(newTodo, (id) => {
       newTodo.id = id
