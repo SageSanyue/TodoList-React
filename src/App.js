@@ -118,8 +118,12 @@ class App extends Component {
     })
   }
   delete(event,todo){
-    todo.deleted = true
-    this.setState(this.state)
+    //todo.deleted = true
+    //this.setState(this.state)
+    TodoModel.destroy(todo.id, ()=>{
+      todo.deleted = true
+      this.setState(this.state)
+    })
     
   }
 }
