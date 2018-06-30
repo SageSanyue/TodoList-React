@@ -9,6 +9,22 @@
   min-width: 32em;
   box-shadow: 0 0 1em hsla(0,0%,0%,0.15);
 }
+@media(width:1024px){
+  .App{
+  min-height: 18em;
+  min-width: 46em;
+  }
+}
+@media(max-width:322px){
+  .App{
+  min-width: 19em;
+  }
+}
+@media(min-width:323px) and (max-width:500px){
+  .App{
+  min-width: 22em;
+  }
+}
 .App > .todoList > li:nth-child(odd){
   background: #eee;
 }

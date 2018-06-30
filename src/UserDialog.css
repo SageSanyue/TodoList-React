@@ -10,6 +10,17 @@
     border: 1px solid #aaa;
     box-shadow: 0 0 1em hsla(0,0%,0%,0.35);
 }
+@media(max-width:322px){
+    .UserDialog{
+        min-width: 10em;
+    }
+  }
+@media(width:1024px){
+    .UserDialog{
+        min-width: 38em;
+        min-height: 18em;
+    }
+}
 .UserDialog .signInOrSignUp  > nav:first-child{ 
     padding: 1em;
     margin-left: -2em;
