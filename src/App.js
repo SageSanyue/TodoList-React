@@ -43,16 +43,18 @@ class App extends Component {
     return (
       <div className="App">
         <div className="head">
-        
+          <svg className="icon" aria-hidden="true">
+            <use xlinkHref="#icon-do"></use>
+          </svg>
           <h1>
             {this.state.user.username||'我'}
             的待办
             
-            {this.state.user.id ? <button onClick={this.signOut.bind(this)}>登出</button> : null}
           </h1>
-          <svg className="icon" aria-hidden="true">
+          {this.state.user.id ?
+          <svg className="icon" aria-hidden="true" onClick={this.signOut.bind(this)}>
             <use xlinkHref="#icon-logout"></use>
-          </svg>
+          </svg>: null}
         </div>
 
         <div className="things">

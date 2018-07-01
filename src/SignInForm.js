@@ -18,7 +18,7 @@ export default function(props){
                 <div className="row actions">
                     <button type="submit">登录</button>
                     
-                    <a href="#" onClick={props.onForgotPassword}>找回密码</a>
+                    <a href="" onClick={props.onForgotPassword}>找回密码</a>
                 </div>
             </form>
         )
