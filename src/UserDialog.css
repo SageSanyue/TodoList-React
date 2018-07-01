@@ -36,25 +36,7 @@
     }
 }
 
-.UserDialog .surface .descrip{
-    position: absolute;
-    left: 31%;
-    top: 53%;
-}
-@media(width: 1024px){
-    .UserDialog .surface .descrip{
-        position: absolute;
-        left: 37%;
-        top: 54%;
-    }
-}
-@media(max-width: 768px){
-    .UserDialog .surface .descrip{
-        position: absolute;
-        left: 26%;
-        top: 47%;
-    }
-}
+
 .UserDialog .surface .descrip > p{
     font-weight: 800;
     font-size: 1.3em;
