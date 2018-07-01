@@ -26,7 +26,10 @@ export default function(props){
                 <svg className="icon" aria-hidden="true">
                   <use xlinkHref="#icon-lock"></use>
                 </svg>
-                <input type="password" autoFocus="autofocus" placeholder="密码（6-15位）" value={props.formData.password}
+                <input type="password" 
+                autoFocus="autofocus" 
+                placeholder="密码（6-15位）" 
+                value={props.formData.password}
                 onChange={props.onChange.bind(null, 'password')}/>
             </div>
             <div className="row actions">
