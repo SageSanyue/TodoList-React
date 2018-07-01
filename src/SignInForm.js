@@ -28,7 +28,7 @@ export default function(props){
                     <button type="submit">登录</button>
                 </div> 
                 <div className="forget">  
-                    <a href="#" onClick={props.onForgotPassword}> &lt; 找回密码</a>
+                    <a href="#" onClick={props.onForgotPassword}>找回密码</a>
                 </div>
             </form>
         )

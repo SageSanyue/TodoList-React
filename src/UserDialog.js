@@ -123,7 +123,7 @@ export default class UserDialog extends Component{
                         <img src={Slogan} alt="Todo-List" />
                      </div>
                      <div className="descrip">
-                        <p>你的在线待办备忘录</p>
+                        <p>在线待办备忘录</p>
                      </div>
                    </div>
                    {
