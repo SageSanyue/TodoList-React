@@ -60,7 +60,7 @@
   overflow: scroll;
 }
 .App > .inputWrapper{
-  border: 1px solid blue;
+  
   position: absolute;
   left: 85px;
   bottom: 0px;

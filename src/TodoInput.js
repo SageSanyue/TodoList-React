@@ -12,7 +12,9 @@ function changeTitle(props,e){
     props.onChange(e)
 }
 export default function (props){
-    return <input type="text" value={props.content}
+    return <input type="text"
+        placeholder="输入后回车或点击‘+’添加"
+        value={props.content}
         className="TodoInput"
         onChange={changeTitle.bind(null,props)}
         onKeyPress={submit.bind(null,props)}/>

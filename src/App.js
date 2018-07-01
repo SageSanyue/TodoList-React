@@ -61,17 +61,27 @@ class App extends Component {
           <ol className="todoList">
             {todos}
           </ol>
-          {this.state.user.id ?
-          null :
-            <UserDialog 
-            onSignUp={this.onSignUpOrSignIn.bind(this)}
-            onSignIn={this.onSignUpOrSignIn.bind(this)}/>}
+          
         </div>
+
         <div className="inputWrapper">
+          <svg className="icon" 
+            onClick={this.addTodo.bind(this)}
+						value={this.state.newTodo}>
+            <use xlinkHref="#icon-add"></use>
+          </svg>
           <TodoInput content={this.state.newTodo}
                     onChange={this.changeTitle.bind(this)}
                     onSubmit={this.addTodo.bind(this)} />
         </div>
+
+        {this.state.user.id ?
+          null :
+            <UserDialog 
+            onSignUp={this.onSignUpOrSignIn.bind(this)}
+            onSignIn={this.onSignUpOrSignIn.bind(this)}
+            />
+        }
       </div>
       
     )
@@ -90,6 +100,18 @@ class App extends Component {
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = user
     this.setState(stateCopy)
+
+    if(user){
+			let success = (list)=>{
+				let stateCopy = JSON.parse(JSON.stringify(this.state))
+				stateCopy.todoList = list
+				this.setState(stateCopy)
+			}
+			let error = (error)=>{
+				console.log(error)
+			}
+			TodoModel.loadToDoList(user, success, error)
+		}
   }
 
   componentDidUpdate(){
@@ -119,6 +141,9 @@ class App extends Component {
     //console.log('要添加一个todo')
     //this.state.todoList.push({
      // id: idMaker(),
+     if(this.state.newTodo === ''){
+       return
+     }
      let newTodo = {
       title: event.target.value,
       status: '',

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import SignUpForm from './SignUpForm'
 import SignInForm from './SignInForm'
 
@@ -6,7 +6,7 @@ export default class SignInOrSignUp extends Component {
     constructor(props){
         super(props)
         this.state = {
-            selected: 'signUp'
+            selected: 'signIn'
         }
     }
 
@@ -19,14 +19,14 @@ export default class SignInOrSignUp extends Component {
     render(){
         return(
                 <div className="signInOrSignUp">
-                    <nav>
-                        <label>
+                    <nav onChange={this.switch.bind(this)}>
+                        <label className={this.state.selected === 'signUp' ? "checked" : null}>
                             <input type="radio" 
                             value="signUp" 
                             checked={this.state.selected === 'signUp'}
                             onChange={this.switch.bind(this)}
                             />注册</label>
-                        <label>
+                        <label className={this.state.selected === 'signIn' ? "checked" : null}>
                             <input type="radio" value="signIn" 
                             checked={this.state.selected === 'signIn'}
                             onChange={this.switch.bind(this)}

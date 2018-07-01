@@ -5,6 +5,9 @@ import {signUp, signIn, sendPasswordResetEmail} from './leanCloud'
 //import SignInForm from './SignInForm'
 import ForgotPasswordForm from './ForgotPasswordForm'
 import SignInOrSignUp from './SignInOrSignUp'
+import Slogan from './img/slogan.png'
+
+
 export default class UserDialog extends Component{
     constructor(props){  
         super(props)
@@ -115,23 +118,33 @@ export default class UserDialog extends Component{
         return (
             <div className="UserDialog-Wrapper">
                 <div className="UserDialog">
-                {
+                   <div className="surface">
+                     <div className="Slogan">
+                        <img src={Slogan} alt="Todo-List" />
+                     </div>
+                     <div className="descrip">
+                        <p>你的在线待办备忘录</p>
+                     </div>
+                   </div>
+                   {
                     this.state.selectedTab === 'signInOrSignUp' ? 
-                <SignInOrSignUp
-                formData={this.state.formData}
-                onSignIn={this.signIn.bind(this)}
-                onSignUp={this.signUp.bind(this)}
-                onChange={this.changeFormData.bind(this)}
-                onForgotPassword={this.showForgotPassword.bind(this)}
-                />
-                :
-                <ForgotPasswordForm
-                   formData={this.state.formData}
-                   onSubmit={this.resetPassword.bind(this)}
-                   onChange={this.changeFormData.bind(this)}
-                   onSignIn={this.returnToSignIn.bind(this)}
-                />
-                }
+                    <SignInOrSignUp
+                    formData={this.state.formData}
+                    onSignIn={this.signIn.bind(this)}
+                    onSignUp={this.signUp.bind(this)}
+                    onChange={this.changeFormData.bind(this)}
+                    onForgotPassword={this.showForgotPassword.bind(this)}
+                    />
+                    :
+                    <ForgotPasswordForm
+                    formData={this.state.formData}
+                    onSubmit={this.resetPassword.bind(this)}
+                    onChange={this.changeFormData.bind(this)}
+                    onSignIn={this.returnToSignIn.bind(this)}
+                    />
+                   }
+                    
+                   
                 </div>
             </div>
             )
@@ -144,12 +157,13 @@ export default class UserDialog extends Component{
         returnToSignIn(){
             let stateCopy = JSON.parse(JSON.stringify(this.state))
             stateCopy.selectedTab = 'signInOrSignUp'
+            stateCopy.selected = 'signIn'
             this.setState(stateCopy)
         }
         resetPassword(e){
             e.preventDefault()
             sendPasswordResetEmail(this.state.formData.email)
         }
-    }
+}
 
 

@@ -16,7 +16,10 @@
 .TodoItem > label >.icon{
     color: #00abf5;
     margin-left: 1em;
-   
+    opacity: 0.5;
+}
+.TodoItem > label >.icon:hover{
+	opacity: 1;
 }
 
 .TodoItem > svg {
