@@ -35,7 +35,7 @@ export const TodoModel = {
      let acl = new AV.ACL()
      acl.setPublicReadAccess(false) // 注意这里是 false
      acl.setWriteAccess(AV.User.current(), true)
-     acl.setReadAccess(AV.User.current(),true)
+     acl.setReadAccess(AV.User.current(), true)
 
      todo.setACL(acl);
 
@@ -134,6 +134,6 @@ export function sendPasswordResetEmail(email, successFn, errorFn){
 function getUserFromAVUser (AVUser) {
   return {
     id: AVUser.id,
-    ...AVUser.attributes
+    ...AVUser.attributes //...是展开运算符，可以把数组转化为参数序列
   }
 }

@@ -21,11 +21,20 @@ class App extends Component {
     }
     let user = getCurrentUser()
     if(user){
-      TodoModel.getByUser(user,(todos) => {
+     /* TodoModel.getByUser(user,(todos) => {
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.todoList = todos
         this.setState(stateCopy)
-      })
+      })*/
+      let success = (list)=>{
+        let stateCopy = JSON.parse(JSON.stringify(this.state))
+        stateCopy.todoList = list
+        this.setState(stateCopy)
+      }
+      let error = (error)=>{
+        console.log(error)
+      }
+      TodoModel.getByUser(user,success,error)
     }
   }
   render() {
@@ -91,6 +100,7 @@ class App extends Component {
     signOut()
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
+    stateCopy.todoList = []
     this.setState(stateCopy)
   }
 
@@ -110,7 +120,7 @@ class App extends Component {
 			let error = (error)=>{
 				console.log(error)
 			}
-			TodoModel.loadToDoList(user, success, error)
+			TodoModel.getByUser(user, success, error)
 		}
   }
 
@@ -119,9 +129,9 @@ class App extends Component {
   }
   toggle(e,todo){
     let oldStatus = todo.status
-    todo.status = todo.status === 'completed'?'':'completed'
+    todo.status = todo.status === 'completed' ? '' : 'completed'
     //this.setState(this.state)
-    TodoModel.update(todo, ()=>{
+    TodoModel.update(this.state.user, todo, ()=>{
       this.setState(this.state)
     },(error)=>{
       todo.status = oldStatus
@@ -144,12 +154,30 @@ class App extends Component {
      if(this.state.newTodo === ''){
        return
      }
-     let newTodo = {
+     let newItem = {
+       title: this.state.newTodo,
+       status: '',
+       deleted: false
+     }
+     /*let newTodo = {
       title: event.target.value,
       status: '',
       deleted: false
+    }*/
+    let success = (objId)=>{
+      newItem.id = objId
+      this.state.todoList.push(newItem)
+      this.setState({
+        newTodo: '',
+        todoList: this.state.todoList
+      })
+      console.log('已添加')
     }
-    TodoModel.create(newTodo, (id) => {
+    let error = (error)=>{
+      console.log(error)
+    }
+    TodoModel.create(newItem,this.state.user,success,error)
+    /*TodoModel.create(newTodo, (id) => {
       newTodo.id = id
       this.state.todoList.push(newTodo)
       this.setState({
@@ -158,16 +186,19 @@ class App extends Component {
       })
     },(error)=>{
       console.log(error)
-    })
+    })*/
   }
   delete(event,todo){
     //todo.deleted = true
     //this.setState(this.state)
-    TodoModel.destroy(todo.id, ()=>{
+    /*TodoModel.destroy(todo.id, ()=>{
       todo.deleted = true
       this.setState(this.state)
-    })
-    
+    })*/
+    TodoModel.destroy(this.state.user, todo, ()=>{
+      todo.deleted = true
+      this.setState(this.state)
+    }) 
   }
 }
 
