@@ -11,7 +11,6 @@ export default class TodoItem extends Component {
                     checked={this.props.todo.status === 'completed'}>
                      <use xlinkHref="#icon-choose"></use>
                 </svg>
-                
               </label>
                 <span className={this.props.todo.status === 'completed' ? "checked title" : "title"}>
 					{this.props.todo.title}

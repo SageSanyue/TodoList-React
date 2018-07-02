@@ -21,12 +21,13 @@ class App extends Component {
     }
     let user = getCurrentUser()
     if(user){
-     TodoModel.getByUser(user,(todos) => {
+     
+     /* TodoModel.getByUser(user,(todos) => {
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.todoList = todos
         this.setState(stateCopy)
-      })
-      /*let success = (list)=>{
+      })*/
+      let success = (list)=>{
         let stateCopy = JSON.parse(JSON.stringify(this.state))
         stateCopy.todoList = list
         this.setState(stateCopy)
@@ -34,12 +35,14 @@ class App extends Component {
       let error = (error)=>{
         console.log(error)
       }
-      TodoModel.getByUser(user,success,error)*/
+      TodoModel.getByUser(user,success,error)
     }
   }
   render() {
 
-    let todos = this.state.todoList.filter((item)=>!item.deleted).map((item,index)=>{
+    let todos = this.state.todoList
+    .filter((item)=>!item.deleted)
+    .map((item,index)=>{
       return (
       <li key={index}>
         <TodoItem todo={item} onToggle={this.toggle.bind(this)}
@@ -100,7 +103,7 @@ class App extends Component {
     signOut()  //此处signOut是属性，不是变量。里面的signOut()是调用的src/leanCloud.js里的方法，外层的是定义的父组件里的方法。
     let stateCopy = JSON.parse(JSON.stringify(this.state))
     stateCopy.user = {}
-    
+    stateCopy.todoList = []
     this.setState(stateCopy)
   }
 
@@ -111,7 +114,7 @@ class App extends Component {
     stateCopy.user = user
     this.setState(stateCopy)
 
-    /*if(user){
+    if(user){
 			let success = (list)=>{
 				let stateCopy = JSON.parse(JSON.stringify(this.state))
 				stateCopy.todoList = list
@@ -121,7 +124,7 @@ class App extends Component {
 				console.log(error)
 			}
 			TodoModel.getByUser(user, success, error)
-		}*/
+		}
   }
 
   componentDidUpdate(){
@@ -154,18 +157,18 @@ class App extends Component {
      if(this.state.newTodo === ''){
        return
      }
-     /*let newItem = {
+     let newItem = {
        title: this.state.newTodo,
        status: '',
        deleted: false
-     }*/
-     let newTodo = {
+     }
+     /*let newTodo = {
       title: event.target.value,
       status: '',
       deleted: false
-    }
+    }*/
 
-   /* let success = (objId)=>{
+   let success = (objId)=>{
       newItem.id = objId
       this.state.todoList.push(newItem)
       this.setState({
@@ -176,9 +179,10 @@ class App extends Component {
     }
     let error = (error)=>{
       console.log(error)
-    }*/
-    //TodoModel.create(newItem,this.state.user,success,error)
-    TodoModel.create(newTodo, (id) => {
+    }
+    TodoModel.create(newItem,this.state.user,success,error)
+  }
+    /*TodoModel.create(newTodo, (id) => {
       newTodo.id = id
       this.state.todoList.push(newTodo)
       this.setState({
@@ -188,24 +192,17 @@ class App extends Component {
     },(error)=>{
       console.log(error)
     })
-  }
+  }*/
   delete(event,todo){
-    TodoModel.destroy(todo.id, ()=>{
+    /*TodoModel.destroy(todo.id, ()=>{
       todo.deleted = true
       this.setState(this.state)
-    })
-    /*TodoModel.destroy(this.state.user, todo, ()=>{
+    })*/
+    TodoModel.destroy(this.state.user, todo, ()=>{
       todo.deleted = true
       this.setState(this.state)
-    }) */
+    }) 
   }
 }
 
 export default App;
-
-//let id = 0
-
-//function idMaker(){
- // id += 1
- // return id
-//}
